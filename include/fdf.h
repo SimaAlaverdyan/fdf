@@ -3,7 +3,7 @@
 
 #define BUFFER_SIZE 1
 
-#include "../minilibx/mlx.h"
+#include "../mlx/mlx.h"
 #include "../libft/libft.h"
 #include <unistd.h>
 #include <stdio.h>
@@ -24,4 +24,5 @@ typedef struct s_utils
 
 int		        get_next_line(int fd, char **line);
 size_t	        ft_strlen(const char *s);
+void            read_file(t_utils *util, char *file);
 #endif
