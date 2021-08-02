@@ -3,25 +3,23 @@
 int     main(int argc, char **argv)
 {
     t_utils     *util;
-    int         i;
-    int         j;
 
     util = (t_utils *)malloc(sizeof(t_utils));
     if (argc == 2)
     {
         read_file(util, argv[1]);
-        i = 0;
-        while(i < util->height)
-        {
-            j = 0;
-            while (j < util->width)
-            {
-                printf("%3d", util->matrix[i][j]);
-                j++;
-            }
-            printf("\n");
-            i++;
-        }
+
+        util->unitsize = 20;
+        // util->angle = 0.523599;
+        util->angle = 0.8;
+        util->mlx_ptr = mlx_init();
+        util->win_ptr = mlx_new_window(util->mlx_ptr, 1000, 1000, "FDF");
+
+        draw(util);
+    
+        mlx_key_hook(util->win_ptr, key_pressed, util);
+        mlx_loop(util->mlx_ptr);
+
     }
     return (0);
 }

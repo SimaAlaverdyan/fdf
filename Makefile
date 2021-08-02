@@ -3,8 +3,8 @@ NAME			=	fdf
 source			=	fdf.c \
 					get_next_line.c \
 					read_file.c \
-					push_map.c
-					
+					push_map.c \
+					key_events.c \
 
 HEAD			=	include/fdf.h
 
@@ -12,6 +12,7 @@ LIBFT			=	libft/libft.a
 
 OBJS			=	${addprefix source/,${source:.c=.o}}
 
+MLX_FLAGS		=	-lmlx -framework OpenGL -framework AppKit -lm
 
 CC				=	gcc
 
@@ -21,15 +22,17 @@ CFLAGS			=	-Wall -Werror -Wextra -g -I $(HEAD)
 					${CC} ${CFLAGS}  -c $< -o ${<:.c=.o}
 
 $(NAME)			:	${OBJS} ${LIBFT} ${HEAD}
-					${CC} ${CFLAGS} ${LD_FLAGS}  ${OBJS} -o ${NAME} $(LIBFT) 
+					make -C mlx
+					${CC} ${CFLAGS} ${LD_FLAGS} ${MLX_FLAGS} ${OBJS} -o ${NAME} $(LIBFT) 
 
-$(LIBFT)		:
+$(LIBFT)		:	
 					make -C ./libft
 
 all				:	${NAME}
 
-clean			:
-					make fclean -C libft
+clean			:	
+					make clean -C libft
+					make clean -C mlx
 					@rm -rf ${OBJS}
 
 fclean			:	clean
