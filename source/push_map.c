@@ -12,7 +12,18 @@ void    makeIsometric(float *x, float *y, int z, double angle)
     *y = (*x + *y) * sin(angle) - z;
 }
 
-void    join_two_points(t_utils a, t_utils b/*float x, float y*/ , t_utils *util) //Bresenham's line algorithm
+void    zoom(float *x, float *y, float *x1, float *y1, 
+int *z, int *z1, t_utils *util)
+{
+    *x *= util->unitsize;
+    *y *= util->unitsize;
+    *x1 *= util->unitsize;
+    *y1 *= util->unitsize;
+    *z *= util->z_scale;
+    *z1 *= util->z_scale;
+}
+
+void    join_two_points(float x, float y, float x1, float y1, t_utils *util) //Bresenham's line algorithm
 {
     float   x_step;
     float   y_step;
@@ -20,20 +31,12 @@ void    join_two_points(t_utils a, t_utils b/*float x, float y*/ , t_utils *util
     int     z;
     int     z1;
     
-    z = util->matrix[(int)a.y][(int)a.x];
-    z1 = util->matrix[(int)b.y][(int)b.x];
+    z = util->matrix[(int)y][(int)x];
+    z1 = util->matrix[(int)y1][(int)x1];
 
     //---------zoom with unitsize--------
-    x *= util->unitsize;
-    y *= util->unitsize;
-    x1 *= util->unitsize;
-    y1 *= util->unitsize;
+    zoom(&x, &y, &x1, &y1, &z, &z1, util);
 
-    util->x = x;
-    util->y = y;
-    util->z = z;
-
-    
     //----------put color----------------
     util->color = (z || z1) ? 0x4f039a : 0xffffff;
     
@@ -63,21 +66,21 @@ void    join_two_points(t_utils a, t_utils b/*float x, float y*/ , t_utils *util
 
 void    draw(t_utils *util)
 {
-    // int     i;
-    // int     j;
+    int     i;
+    int     j;
 
-    util->y = 0;
-    while(util->y < util->height)
+    i = 0;
+    while(i < util->height)
     {
-        util->x = 0;
-        while(util->x < util->width)
+        j = 0;
+        while(j < util->width)
         {
-            if(util->x < util->width - 1)
-                join_two_points(util->x, util->y, util->x + 1, util->y, util);
-            if(util->y < util->height - 1)
-                join_two_points(util->x, util->y, util->x, util->y + 1, util);
-            util->x++;
+            if(j < util->width - 1)
+                join_two_points(j, i, j + 1, i, util);
+            if(i < util->height - 1)
+                join_two_points(j, i, j, i + 1, util);
+            j++;
         }
-        util->y++;
+        i++;
     }
 }

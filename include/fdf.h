@@ -13,14 +13,12 @@
 
 typedef struct s_utils
 {
-    float       x;
-    float       y;
-    float       z;
     int         width;
     int         height;
     int         **matrix;
     int         unitsize;
     int         color;
+    int         z_scale;
     int         shiftx;
     int         shifty;
    	double	    angle;
@@ -33,6 +31,6 @@ int		        get_next_line(int fd, char **line);
 size_t	        ft_strlen(const char *s);
 void            read_file(t_utils *util, char *file);
 int             key_pressed(int key, t_utils *util);
-void            join_two_points(float x, float y, float x1, float y1, t_utils *util);
+// void            join_two_points(float x, float y, float x1, float y1, t_utils *util);
 void            draw(t_utils *util);
 #endif
