@@ -38,7 +38,7 @@ void    join_two_points(float x, float y, float x1, float y1, t_utils *util) //B
     zoom(&x, &y, &x1, &y1, &z, &z1, util);
 
     //----------put color----------------
-    util->color = (z || z1) ? 0x4f039a : 0xffffff;
+    util->color = (z || z1) ? 0x4f039a : 0x810202;
     
     ///----------make magic effect--------
     makeIsometric(&x, &y, z, util->angle);
@@ -83,4 +83,6 @@ void    draw(t_utils *util)
         }
         i++;
     }
+    mlx_string_put(util->mlx_ptr, util->win_ptr, 5, 5, 0x00FAFF, "Zoom(+) UpY(up-btn) DownY(down-btn) RightX(->) LeftX(<-)   ");
+    mlx_string_put(util->mlx_ptr, util->win_ptr, 5, 25, 0x00FAFF, "angle+(4) angle-(6) scale+(8) scale-(2)");
 }

@@ -31,6 +31,7 @@ int		        get_next_line(int fd, char **line);
 size_t	        ft_strlen(const char *s);
 void            read_file(t_utils *util, char *file);
 int             key_pressed(int key, t_utils *util);
-// void            join_two_points(float x, float y, float x1, float y1, t_utils *util);
+void            ft_exit(char *str);
 void            draw(t_utils *util);
+int             ft_check_extension(char *path, char *ext);
 #endif

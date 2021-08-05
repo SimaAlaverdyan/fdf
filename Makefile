@@ -5,6 +5,7 @@ source			=	fdf.c \
 					read_file.c \
 					push_map.c \
 					key_events.c \
+					check_extension.c
 
 HEAD			=	include/fdf.h
 
