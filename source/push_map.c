@@ -25,20 +25,19 @@ int *z, int *z1, t_utils *util)
 
 void    join_two_points(float x, float y, float x1, float y1, t_utils *util) //Bresenham's line algorithm
 {
-    float   x_step;
-    float   y_step;
-    int     max;
-    int     z;
-    int     z1;
+    float       x_step;
+    float       y_step;
+    int         max;
+    int         z;
+    int         z1;
     
     z = util->matrix[(int)y][(int)x];
     z1 = util->matrix[(int)y1][(int)x1];
-
     //---------zoom with unitsize--------
     zoom(&x, &y, &x1, &y1, &z, &z1, util);
 
     //----------put color----------------
-    util->color = (z || z1) ? 0x4f039a : 0x810202;
+    util->color = (z || z1) ? 0x4f039a : 0xffffff;
     
     ///----------make magic effect--------
     makeIsometric(&x, &y, z, util->angle);
@@ -83,6 +82,6 @@ void    draw(t_utils *util)
         }
         i++;
     }
-    mlx_string_put(util->mlx_ptr, util->win_ptr, 5, 5, 0x00FAFF, "Zoom(+) UpY(up-btn) DownY(down-btn) RightX(->) LeftX(<-)   ");
+    mlx_string_put(util->mlx_ptr, util->win_ptr, 5, 5, 0x00FAFF, "Zoom In(+) Zoom Out(-) Up(up button) Down(down button) Right(->) Left(<-)   ");
     mlx_string_put(util->mlx_ptr, util->win_ptr, 5, 25, 0x00FAFF, "angle+(4) angle-(6) scale+(8) scale-(2)");
 }

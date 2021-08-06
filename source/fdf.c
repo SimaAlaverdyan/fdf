@@ -18,14 +18,13 @@ int main(int argc, char **argv)
         util->win_ptr = mlx_new_window(util->mlx_ptr, 3000, 1000, "FDF");
 
         draw(util);
-        
         mlx_key_hook(util->win_ptr, key_pressed, util);
+        mlx_hook(util->win_ptr, 17, (1L << 17), red_cross, &util);
         mlx_loop(util->mlx_ptr);
     }
     else
-    {
         ft_exit("Arguments Error");
-    }
-
+    free(util);
+    freeMatrix(util);
     return (0);
 }

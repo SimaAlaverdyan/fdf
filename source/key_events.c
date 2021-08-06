@@ -20,7 +20,10 @@ int     key_pressed(int key, t_utils *util)
 		util->z_scale += 1;
 	else if (key == 84 || key == 19)
 		util->z_scale -= 1;
-
+    // else if (key == 69 || key == 24)
+    //     util->unitsize += 10;
+    // else if (key == 78 || key == 27)
+    //     util->unitsize -= 10;
     mlx_clear_window(util->mlx_ptr, util->win_ptr);
     draw(util);
     return(0);

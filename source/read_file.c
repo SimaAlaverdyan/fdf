@@ -94,4 +94,12 @@ void    read_file(t_utils *util, char *file)
         i++;
     }
     util->matrix[i] = NULL;
+    close(fd);
+}
+
+void    freeMatrix(t_utils *util)
+{
+    for(int i = 0; i < util->height; i++)
+        free(util->matrix[i]);
+    free(util->matrix);
 }

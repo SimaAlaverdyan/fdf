@@ -26,7 +26,6 @@ typedef struct s_utils
     void        **win_ptr;
 }               t_utils;
 
-
 int		        get_next_line(int fd, char **line);
 size_t	        ft_strlen(const char *s);
 void            read_file(t_utils *util, char *file);
@@ -34,4 +33,6 @@ int             key_pressed(int key, t_utils *util);
 void            ft_exit(char *str);
 void            draw(t_utils *util);
 int             ft_check_extension(char *path, char *ext);
+int		        red_cross(int key, t_utils *util);
+void            freeMatrix(t_utils *util);
 #endif
