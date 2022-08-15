@@ -11,7 +11,7 @@ int main(int argc, char **argv)
             ft_exit("Invalid file format.");
         read_file(util, argv[1]);
 
-        util->unitsize = 20;
+        util->unitsize = 15;
         util->angle = 0.8;
         util->z_scale = 1;
         util->mlx_ptr = mlx_init();
